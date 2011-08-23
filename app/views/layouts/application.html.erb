@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Releaseme</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="topbar">
+     <div class="fill">
+       <div class="container fixed">
+         <h3><%= link_to "Release Me" %></h3>
+         <ul>
+           <li class="active"><%= link_to "Home" %></li>
+           <li><a href="#about">About</a></li>
+           <li><a href="#contact">Contact</a></li>
+         </ul>
+       </div>
+     </div>
+   </div>
+
+   <div class="container">
+     <div id="content">
+     <%= yield %>
+   </div>
+     <footer>
+       <p>&copy; Dj T@l 2011</p>
+     </footer>
+  </div>
+
+</body>
+</html>

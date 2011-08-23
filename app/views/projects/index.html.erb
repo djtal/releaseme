@@ -1,0 +1,22 @@
+<h2>Listing projects</h2>
+
+<%= link_to 'New Project', new_project_path, :class => "btn primary" %>
+
+<table class="common-table zebra-striped">
+  <tr>
+    <th>Name</th>
+    <th>Lastest action</th>
+    <th>Avancement</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
