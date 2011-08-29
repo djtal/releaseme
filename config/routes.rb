@@ -1,4 +1,6 @@
 Releaseme::Application.routes.draw do
+  resources :environments
+
   resources :projects
 
   # The priority is based upon order of creation:

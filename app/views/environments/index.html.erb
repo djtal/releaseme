@@ -1,0 +1,24 @@
+<h2>Listing environments</h2>
+
+<%= link_to 'New Environment', new_environment_path, :class => "btn primary" %>
+
+<table class="common-table zebra-striped">
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Administration</th>
+  </tr>
+
+<% @environments.each do |environment| %>
+  <tr>
+    <tr><%= environment.naùe %></tr>
+    <%= link_to 'Show', environment %>&nbsp;|&nbsp;
+    <%= link_to 'Edit', edit_environment_path(environment) %>&nbsp;|&nbsp;
+    <td><%= link_to 'Destroy', environment, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
