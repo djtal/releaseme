@@ -1,9 +1,15 @@
 Releaseme::Application.routes.draw do
+
   resources :work_items
 
   resources :environments
 
-  resources :projects
+  resources :projects do
+    resources :deliveries do
+      
+    end
+  
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

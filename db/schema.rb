@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901200819) do
+ActiveRecord::Schema.define(:version => 20110913204527) do
+
+  create_table "deliveries", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "environement_id"
+    t.string   "state"
+    t.boolean  "need_label"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "environments", :force => true do |t|
     t.string   "name"

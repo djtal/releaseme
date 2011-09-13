@@ -1,5 +1,14 @@
+<div class="page-header">
+  <h1><%= @project.name %></h1>
+</div>
+
+<%= link_to "New Delivery", new_project_delivery_path(@project), :class => "btn" %>
+
+<% if @project.deliveries.any? %>
+
+<% else %>
+  <p>No deliveries for this project</p>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
