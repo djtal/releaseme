@@ -1,8 +1,15 @@
 Releaseme::Application.routes.draw do
 
+  resources :delivery_flow_envs
+
+  resources :delivery_flows do
+    resources :delivery_flow_envs
+  end
+
   resources :work_items
 
   resources :environments
+  resources :deliveries
 
   resources :projects do
     resources :deliveries do

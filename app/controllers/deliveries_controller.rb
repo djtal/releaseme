@@ -24,7 +24,8 @@ class DeliveriesController < ApplicationController
   # GET /deliveries/new
   # GET /deliveries/new.json
   def new
-    @delivery = Delivery.new
+    @project= Project.find(params[:project_id]) if params[:project_id]
+    @delivery = @project ? @project.deliveries.build : Delivery.new
 
     respond_to do |format|
       format.html # new.html.erb

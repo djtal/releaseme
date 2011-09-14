@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20110913204527) do
 
   create_table "deliveries", :force => true do |t|
     t.integer  "project_id"
-    t.integer  "environement_id"
+    t.integer  "environment_id"
     t.string   "state"
     t.boolean  "need_label"
     t.text     "description"

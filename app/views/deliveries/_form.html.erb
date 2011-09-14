@@ -2,9 +2,14 @@
   <%= f.error_notification %>
 
   <div class="inputs">
+    <%= f.input :need_label %>
+    <%= f.input :description %>
+    <%= f.association :environment %>
+    <%= f.input :project_id, :as => :hidden %>
   </div>
 
   <div class="actions">
+    <%= link_to "Cancel", project_path(@project), :class => "btn" %> or
     <%= f.button :submit, :class => "primary" %>
   </div>
 <% end %>

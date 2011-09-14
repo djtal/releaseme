@@ -11,10 +11,10 @@
 
 <% @environments.each do |environment| %>
   <tr>
-    <tr><%= environment.naùe %></tr>
-    <%= link_to 'Show', environment %>&nbsp;|&nbsp;
-    <%= link_to 'Edit', edit_environment_path(environment) %>&nbsp;|&nbsp;
-    <td><%= link_to 'Destroy', environment, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to environment.name, environment_path(environment) %></td>
+    <td><%= environment.version %></td>
+    <td><%= link_to 'Edit', edit_environment_path(environment) %>&nbsp;|&nbsp;
+    <%= link_to 'Destroy', environment, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
