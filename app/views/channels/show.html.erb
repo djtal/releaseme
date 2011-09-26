@@ -1,5 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h2>Composition of channel <%= @channel.name %></h2>
+</div>
 
+<div class="row">
+  <div class="span4 columns">
+    <p>
+    Add environment to your channel here. An environment can be assigned to only one chanel.
+    </p>
+  </div>
+  <div class="span12 columns">
+    <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_channel_path(@channel) %> |
-<%= link_to 'Back', channels_path %>
+    <div class="well">
+       <%= link_to 'Add an environement', "#", :class => "btn primary" %> or
+      <%= link_to 'Back to Channels', channels_path, :class => "btn" %>
+    </div>
+   
+  </div>
+</div>
