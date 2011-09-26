@@ -10,6 +10,9 @@
     <thead>
     <tr>
       <th>Description</th>
+      <% @envs.each do |env| %>
+        <th><%= env.name %></th>
+      <% end %>
       <th>Administration</th>
     </tr>
     </thead>
@@ -17,6 +20,15 @@
       <% @project.deliveries.each do |del| %>
         <tr>
           <td><%= del.description %></td>
+          <% @envs.each do |env| %>
+            <td>
+              <% if del.environment  == env %>
+                <% del.state_transitions.each do |t| %>
+                  <%= link_to t.event, "#", :class => "btn" %>
+                <% end %>
+              <% end %>
+            </td>
+          <% end %>
           <td><%= link_to 'Edit', edit_project_delivery_path(@project, del) %>&nbsp;|&nbsp;
           <%= link_to 'Destroy', project_delivery_path(@project, del), confirm: 'Are you sure?', method: :delete %>            
           </td>

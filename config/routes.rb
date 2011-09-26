@@ -11,7 +11,10 @@ Releaseme::Application.routes.draw do
 
   resources :projects do
     resources :deliveries do
-      
+      member do
+        post "deliver"
+        post "validate"
+      end
     end
   
   end

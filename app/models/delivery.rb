@@ -14,5 +14,9 @@ class Delivery < ActiveRecord::Base
     event :validate do
       transition :delivered => :validated
     end
+    
+    event :cancel do
+      transition [:delivered, :validated] => :canceld
+    end
   end
 end
