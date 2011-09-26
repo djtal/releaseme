@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h2>Listing channels</h2>
+</div>
+
+<% if @channels.any? %>
+  <table class="zebra-striped">
+    <tr>
+      <th>Name</th>
+      <th>Administration</th>
+    </tr>
+
+  <% @channels.each do |channel| %>
+    <tr>
+      <td><%= link_to channel.name, channel_path(channel) %></td>
+      <td><%= link_to 'Edit', edit_channel_path(channel) %>&nbsp;|&nbsp;
+      <%= link_to 'Destroy', channel, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <p>No channel at this time</p>
+<% end %>
+
+<div class="well">
+  <%= link_to 'New Channel', new_channel_path, :class => "btn primary" %>
+</div>

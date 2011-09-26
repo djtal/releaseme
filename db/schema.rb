@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913204527) do
+ActiveRecord::Schema.define(:version => 20110926191639) do
+
+  create_table "channels", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "deliveries", :force => true do |t|
     t.integer  "project_id"
@@ -19,6 +25,21 @@ ActiveRecord::Schema.define(:version => 20110913204527) do
     t.string   "state"
     t.boolean  "need_label"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delivery_flow_envs", :force => true do |t|
+    t.integer  "delivery_flow_id"
+    t.integer  "environment_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delivery_flows", :force => true do |t|
+    t.string   "name"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20110913204527) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "deliveries_count", :default => 0
   end
 
   create_table "work_items", :force => true do |t|

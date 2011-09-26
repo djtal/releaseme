@@ -1,14 +1,39 @@
 <div class="page-header">
-  <h1><%= @project.name %></h1>
+  <h2><%= @project.name %></h2>
 </div>
 
-<%= link_to "New Delivery", new_project_delivery_path(@project), :class => "btn" %>
+
+<h3>Deliveries</h3>
 
 <% if @project.deliveries.any? %>
-
+  <table class="zebra-striped">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Administration</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @project.deliveries.each do |del| %>
+        <tr>
+          <td><%= del.description %></td>
+          <td><%= link_to 'Edit', edit_project_delivery_path(@project, del) %>&nbsp;|&nbsp;
+          <%= link_to 'Destroy', project_delivery_path(@project, del), confirm: 'Are you sure?', method: :delete %>            
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  
+  </table>
 <% else %>
   <p>No deliveries for this project</p>
 <% end %>
+
+<div class="well">
+  <%= link_to "New Delivery", new_project_delivery_path(@project), :class => "btn primary" %> or 
+  <%= link_to "Back to Projects", projects_path, :class => "btn" %>
+</div>
+
 
 <p id="notice"><%= notice %></p>
 

@@ -42,10 +42,9 @@ class DeliveriesController < ApplicationController
   # POST /deliveries.json
   def create
     @delivery = Delivery.new(params[:delivery])
-
     respond_to do |format|
       if @delivery.save
-        format.html { redirect_to @delivery, notice: 'Delivery was successfully created.' }
+        format.html { redirect_to @delivery.project ? @delivery.project :  @delivery , notice: 'Delivery was successfully created.' }
         format.json { render json: @delivery, status: :created, location: @delivery }
       else
         format.html { render action: "new" }
@@ -77,7 +76,7 @@ class DeliveriesController < ApplicationController
     @delivery.destroy
 
     respond_to do |format|
-      format.html { redirect_to deliveries_url }
+      format.html { redirect_to @delivery.project ? @delivery.project : deliveries_url }
       format.json { head :ok }
     end
   end

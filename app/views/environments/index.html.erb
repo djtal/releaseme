@@ -1,24 +1,28 @@
-<h2>Listing environments</h2>
+<div class="page-header">
+  <h2>Listing environments</h2>
+</div>
 
-<%= link_to 'New Environment', new_environment_path, :class => "btn primary" %>
-
-<table class="common-table zebra-striped">
+<table class="zebra-striped">
+  <thead>
   <tr>
     <th>Name</th>
     <th>Version</th>
     <th>Administration</th>
   </tr>
-
-<% @environments.each do |environment| %>
-  <tr>
-    <td><%= link_to environment.name, environment_path(environment) %></td>
-    <td><%= environment.version %></td>
-    <td><%= link_to 'Edit', edit_environment_path(environment) %>&nbsp;|&nbsp;
-    <%= link_to 'Destroy', environment, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  </thead>
+  <tbody>
+    <% @environments.each do |environment| %>
+      <tr>
+        <td><%= link_to environment.name, environment_path(environment) %></td>
+        <td><%= environment.version %></td>
+        <td><%= link_to 'Edit', edit_environment_path(environment) %>&nbsp;|&nbsp;
+        <%= link_to 'Destroy', environment, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </toby>
 </table>
 
-<br />
-
+<div class="well">
+  <%= link_to 'New Environment', new_environment_path, :class => "btn primary" %>
+</div>
 

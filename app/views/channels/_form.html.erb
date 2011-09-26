@@ -1,0 +1,12 @@
+<%= simple_form_for(@channel) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+  </div>
+
+  <div class="actions">
+    <%= link_to "Cancel", projects_path, :class => "btn" %> or 
+    <%= f.button :submit, :class => "primary" %>
+  </div>
+<% end %>
