@@ -68,6 +68,16 @@ class DeliveriesController < ApplicationController
       end
     end
   end
+  
+  def transition
+    @project = Project.find(params[:project_id])
+    @del = Delivery.find(params[:id])
+    
+    @del.fire_events(params[:event].to_sym)
+    respond_to do |format|
+      format.html {redirect_to @project}
+    end
+  end
 
   # DELETE /deliveries/1
   # DELETE /deliveries/1.json

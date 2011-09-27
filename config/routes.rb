@@ -2,9 +2,6 @@ Releaseme::Application.routes.draw do
 
   resources :channels
 
-  resources :delivery_flows do
-    resources :delivery_flow_envs
-  end
 
   resources :environments
   resources :deliveries
@@ -12,8 +9,7 @@ Releaseme::Application.routes.draw do
   resources :projects do
     resources :deliveries do
       member do
-        post "deliver"
-        post "validate"
+        post ':event' => 'deliveries#transition', :as => "transition"
       end
     end
   

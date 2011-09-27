@@ -23,8 +23,12 @@
           <% @envs.each do |env| %>
             <td>
               <% if del.environment  == env %>
-                <% del.state_transitions.each do |t| %>
-                  <%= link_to t.event, "#", :class => "btn" %>
+                <% del.state_events.each do |ev| %>
+                  <%= simple_form_for(del, :url => transition_project_delivery_path(@project.id, del.id, 
+                                                                            ev.to_s), :method => :post,
+                                              :html => {:class => "span"} ) do |f| %>
+                    <%= f.button :submit, :value => ev.to_s %>
+                  <% end %>
                 <% end %>
               <% end %>
             </td>
