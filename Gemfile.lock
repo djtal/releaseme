@@ -6,6 +6,12 @@ GIT
       actionpack (~> 3.0)
       activemodel (~> 3.0)
 
+GIT
+  remote: git://github.com/swanandp/acts_as_list.git
+  revision: ec97d512ba792fa072c55cbb9447d83c067e611f
+  specs:
+    acts_as_list (0.1.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -118,6 +124,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list!
   coffee-rails (~> 3.1.0)
   jquery-rails
   rails (= 3.1.0)

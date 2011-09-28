@@ -21,6 +21,7 @@ end
 
 gem 'jquery-rails'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+gem 'acts_as_list', :git => 'git://github.com/swanandp/acts_as_list.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'

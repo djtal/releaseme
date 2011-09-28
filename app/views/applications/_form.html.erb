@@ -1,0 +1,12 @@
+<%= simple_form_for(@application, :url => channel_applications_path(@channel.id)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.association :environment %>
+  </div>
+
+  <div class="actions">
+    <%= link_to "Back to #{@channel.name}", channel_path(@channel), :class => "btn" %> or 
+    <%= f.button :submit, :class => "primary" %>
+  </div>
+<% end %>

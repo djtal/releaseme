@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926191639) do
+ActiveRecord::Schema.define(:version => 20110928201037) do
+
+  create_table "applications", :force => true do |t|
+    t.integer  "channel_id"
+    t.integer  "environment_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "channels", :force => true do |t|
     t.string   "name"
@@ -57,6 +65,14 @@ ActiveRecord::Schema.define(:version => 20110926191639) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "deliveries_count", :default => 0
+  end
+
+  create_table "versions", :force => true do |t|
+    t.string   "version"
+    t.integer  "channel_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "work_items", :force => true do |t|

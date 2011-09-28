@@ -1,12 +1,16 @@
 Releaseme::Application.routes.draw do
 
-  resources :channels
+  
 
+  resources :channels do
+    resources :applications
+  end
 
   resources :environments
   resources :deliveries
 
   resources :projects do
+    resources :versions
     resources :deliveries do
       member do
         post ':event' => 'deliveries#transition', :as => "transition"
