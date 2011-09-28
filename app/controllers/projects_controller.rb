@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id], :include => :deliveries)
-    @envs = Environment.find(:all)
+    @channels = Channel.find(:all, :include => {:applications => :environment})
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

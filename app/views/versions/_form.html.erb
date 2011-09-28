@@ -1,0 +1,12 @@
+<%= simple_form_for(@version, :url => project_versions_path(@project.id, @version.id)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :version %>
+    <%= f.association :channel %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, :class => "primary" %>
+  </div>
+<% end %>

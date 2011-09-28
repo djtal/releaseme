@@ -1,0 +1,29 @@
+<% if versions.any? %>
+  <table class="zebra-striped">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <% channel.applications.each do |app| %>
+        <th><%= app.environment.name %></th>
+      <% end %>
+      <th>Administration</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% versions.each do |version| %>
+        <tr>
+          <td><%= version.version %></td>
+          <% channel.applications.each do |app| %>
+            <td></td>
+          <% end %>
+          <td><%= link_to 'Edit', edit_project_version_path(@project, version) %>&nbsp;|&nbsp;
+          <%= link_to 'Destroy', project_version_path(@project, version), confirm: 'Are you sure?', method: :delete %>            
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  
+  </table>
+<% else %>
+  <p>No versions for this project</p>
+<% end %>

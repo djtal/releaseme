@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h2>Listing versions</h2>
+</div>
+
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= link_to version.name, version_path(@version) %></td>
+        <td><%= link_to 'Edit', edit_version_path(channel) %>&nbsp;|&nbsp;
+        <%= link_to 'Destroy', version, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="well">
+  <%= link_to 'New version', new_version_path, :class => "btn primary" %>
+</div>

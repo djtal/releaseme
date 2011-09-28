@@ -2,51 +2,15 @@
   <h2><%= @project.name %></h2>
 </div>
 
+<% @channels.each do |channel| %>
+  <h3><%= channel.name  %> Versions</h3>
 
-<h3>Deliveries</h3>
-
-<% if @project.deliveries.any? %>
-  <table class="zebra-striped">
-    <thead>
-    <tr>
-      <th>Description</th>
-      <% @envs.each do |env| %>
-        <th><%= env.name %></th>
-      <% end %>
-      <th>Administration</th>
-    </tr>
-    </thead>
-    <tbody>
-      <% @project.deliveries.each do |del| %>
-        <tr>
-          <td><%= del.description %></td>
-          <% @envs.each do |env| %>
-            <td>
-              <% if del.environment  == env %>
-                <% del.state_events.each do |ev| %>
-                  <%= simple_form_for(del, :url => transition_project_delivery_path(@project.id, del.id, 
-                                                                            ev.to_s), :method => :post,
-                                              :html => {:class => "span"} ) do |f| %>
-                    <%= f.button :submit, :value => ev.to_s %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </td>
-          <% end %>
-          <td><%= link_to 'Edit', edit_project_delivery_path(@project, del) %>&nbsp;|&nbsp;
-          <%= link_to 'Destroy', project_delivery_path(@project, del), confirm: 'Are you sure?', method: :delete %>            
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  
-  </table>
-<% else %>
-  <p>No deliveries for this project</p>
+  <%= render :partial => "versions/project_versions", 
+            :locals => {:project => @project, :versions => @project.versions.for_channel(channel), :channel => channel}  %>
 <% end %>
 
 <div class="well">
-  <%= link_to "New Delivery", new_project_delivery_path(@project), :class => "btn primary" %> or 
+  <%= link_to "New Versions", new_project_version_path(@project), :class => "btn primary" %> or 
   <%= link_to "Back to Projects", projects_path, :class => "btn" %>
 </div>
 

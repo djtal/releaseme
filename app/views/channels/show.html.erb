@@ -10,9 +10,26 @@
   </div>
   <div class="span12 columns">
     <p id="notice"><%= notice %></p>
-
+    <table class="zebra-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Order</th>
+          <th>Administration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @channel.applications.each do |app| %>
+          <tr>
+            <td><%= app.environment.name %></td>
+            <td><%= app.position %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <div class="well">
-       <%= link_to 'Add an environement', "#", :class => "btn primary" %> or
+       <%= link_to 'Add an environement', new_channel_application_path(@channel), :class => "btn primary" %> or
       <%= link_to 'Back to Channels', channels_path, :class => "btn" %>
     </div>
    

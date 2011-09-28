@@ -1,0 +1,43 @@
+<% if deliveries.any? %>
+  <table class="zebra-striped">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <% @envs.each do |env| %>
+        <th><%= env.name %></th>
+      <% end %>
+      <th>Administration</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% deliveries.each do |del| %>
+        <tr>
+          <td><%= del.description %></td>
+          <% @envs.each do |env| %>
+            <td>
+              <% if del.environment  == env %>
+                <% if del.state_events.any? %>
+                  <% del.state_events.each do |ev| %>
+                    <%= simple_form_for(del, :url => transition_project_delivery_path(project.id, del.id, 
+                                                                              ev.to_s), :method => :post,
+                                                :html => {:class => "span"} ) do |f| %>
+                      <%= f.button :submit, :value => ev.to_s %>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                    <%= link_to del.state, "#", :class => "btn disabled" %>
+                <% end %>
+              <% end %>
+            </td>
+          <% end %>
+          <td><%= link_to 'Edit', edit_project_delivery_path(@project, del) %>&nbsp;|&nbsp;
+          <%= link_to 'Destroy', project_delivery_path(@project, del), confirm: 'Are you sure?', method: :delete %>            
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  
+  </table>
+<% else %>
+  <p>No deliveries for this project</p>
+<% end %>
