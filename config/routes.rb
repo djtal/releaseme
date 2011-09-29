@@ -10,13 +10,13 @@ Releaseme::Application.routes.draw do
   resources :deliveries
 
   resources :projects do
-    resources :versions
-    resources :deliveries do
-      member do
-        post ':event' => 'deliveries#transition', :as => "transition"
+    resources :versions do
+      resources :deliveries do
+        member do
+          post ':event' => 'deliveries#transition', :as => "transition"
+        end
       end
     end
-  
   end
 
   # The priority is based upon order of creation:

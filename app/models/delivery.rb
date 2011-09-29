@@ -1,9 +1,11 @@
 class Delivery < ActiveRecord::Base
-  validates_presence_of :project_id
-  validates_presence_of :environment_id
+  validates_presence_of :version_id
+  validates_presence_of :application_id
   
-  belongs_to :project, :counter_cache => true
-  belongs_to :environment
+  belongs_to :version
+  belongs_to :application
+  
+  scope :for_app, lambda{|app| where(:application_id => app.id)}
   
   
   state_machine :initial => :created do

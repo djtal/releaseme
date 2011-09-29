@@ -13,7 +13,10 @@ class VersionsController < ApplicationController
   # GET /versions/1
   # GET /versions/1.json
   def show
-    @version = Version.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @version = @project.versions.where(:id => params[:id]).first
+    @applications = @version.channel.applications.joins(:environment)
+    @deliveries = @version.deliveries.group_by(&:application)
 
     respond_to do |format|
       format.html # show.html.erb

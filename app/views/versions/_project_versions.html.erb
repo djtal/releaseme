@@ -12,9 +12,9 @@
     <tbody>
       <% versions.each do |version| %>
         <tr>
-          <td><%= version.version %></td>
+          <td><%= link_to version.version, project_version_path(@project, version) %></td>
           <% channel.applications.each do |app| %>
-            <td></td>
+            <td><%= version.deliveries.for_app(app).any? ? version.deliveries.for_app(app).first.state : "N/A" %></td>
           <% end %>
           <td><%= link_to 'Edit', edit_project_version_path(@project, version) %>&nbsp;|&nbsp;
           <%= link_to 'Destroy', project_version_path(@project, version), confirm: 'Are you sure?', method: :delete %>            

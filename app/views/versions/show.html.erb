@@ -1,5 +1,32 @@
+<div class="page_header">
+  <h2>
+    <%= @project.name %> : v<%= @version.version %>
+    <small><%= @version.channel.name %></small>
+  </h2>
+</div>
+
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="span6">
+    <h3>Status</h3>
+    <table class="zebra-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "application", :collection => @applications %>
+      </tbody>
+    </table>
+  </div>
+  <div class="span10">
+    <h3>History</h3>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_version_path(@version) %> |
-<%= link_to 'Back', versions_path %>
+<div class="well">
+  <%= link_to "Back to #{@project.name}", project_path(@project), :class => "btn" %>
+</div>
