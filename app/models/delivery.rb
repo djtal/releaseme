@@ -1,6 +1,7 @@
 class Delivery < ActiveRecord::Base
   validates_presence_of :version_id
   validates_presence_of :application_id
+  validates_uniqueness_of :application_id, :scope => :version_id
   
   belongs_to :version
   belongs_to :application

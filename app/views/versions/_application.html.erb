@@ -3,11 +3,18 @@
     <%= application.environment.name %>
   </td>
   <td>
-    <% if @deliveries[:application] %>
-      
+    <% if @deliveries[application] %>
+      <% if @deliveries[application].first.state_events.any? %>
+        <% @deliveries[application].first.state_events.each do |ev| %>
+          <%= delivery_transitions_form(@deliveries[application].first, ev) %>
+        <% end %>
+      <% else %>
+        <%= deliveries_state_for(@deliveries[application].first) %>
+      <% end %>
     <% else %>
-      <%= simple_form_for(Delivery.new,
+      <%= simple_form_for(Delivery.new(:application => application),
                           :url => project_version_deliveries_path(@project.id, @version.id)) do |f| %>
+        <%= f.input :application_id, :as => :hidden %>
         <%= f.button :submit, :value => "Create", :class => "btn primary" %>
       
       <% end %>

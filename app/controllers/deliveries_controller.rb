@@ -41,13 +41,15 @@ class DeliveriesController < ApplicationController
   # POST /deliveries
   # POST /deliveries.json
   def create
+    @version = Version.find(params[:version_id])
     @delivery = Delivery.new(params[:delivery])
+    @delivery.version = @version
     respond_to do |format|
       if @delivery.save
-        format.html { redirect_to @delivery.project ? @delivery.project :  @delivery , notice: 'Delivery was successfully created.' }
+        format.html { redirect_to project_version_path(@version.project.id, @version.id) , notice: 'Delivery was successfully created.' }
         format.json { render json: @delivery, status: :created, location: @delivery }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to project_version_path(@version.project.id, @version.id) }
         format.json { render json: @delivery.errors, status: :unprocessable_entity }
       end
     end
@@ -75,7 +77,7 @@ class DeliveriesController < ApplicationController
     
     @del.fire_events(params[:event].to_sym)
     respond_to do |format|
-      format.html {redirect_to @project}
+      format.html {redirect_to project_version_path(@del.version.project.id, @del.version.id)}
     end
   end
 

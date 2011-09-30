@@ -14,7 +14,7 @@
         <tr>
           <td><%= link_to version.version, project_version_path(@project, version) %></td>
           <% channel.applications.each do |app| %>
-            <td><%= version.deliveries.for_app(app).any? ? version.deliveries.for_app(app).first.state : "N/A" %></td>
+            <td><%= deliveries_state_for(version.deliveries.for_app(app).first) %></td>
           <% end %>
           <td><%= link_to 'Edit', edit_project_version_path(@project, version) %>&nbsp;|&nbsp;
           <%= link_to 'Destroy', project_version_path(@project, version), confirm: 'Are you sure?', method: :delete %>            
