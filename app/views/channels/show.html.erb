@@ -23,7 +23,10 @@
           <tr>
             <td><%= app.environment.name %></td>
             <td><%= app.position %></td>
-            <td></td>
+            <td><%= link_to "Up", app.first? ? "#" : move_up_channel_application_path(@channel,app), :method => :put,
+                            :class => "btn #{"disabled" if app.first?}" %>
+            <%= link_to "Down", app.last? ? "#" : move_down_channel_application_path(@channel,app), :method => :put, 
+                        :class => "btn #{"disabled" if app.last?}" %></td>
           </tr>
         <% end %>
       </tbody>

@@ -3,7 +3,12 @@ Releaseme::Application.routes.draw do
   
 
   resources :channels do
-    resources :applications
+    resources :applications do
+      member do
+        put :move_up, :move_down
+      end
+      
+    end
   end
 
   resources :environments

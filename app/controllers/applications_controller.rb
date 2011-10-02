@@ -71,6 +71,26 @@ class ApplicationsController < ApplicationController
       end
     end
   end
+  
+  def move_up
+    @channel = Channel.find(params[:channel_id])
+    @app = @channel.applications.find(params[:id])
+    
+    @app.move_higher
+    respond_to do |format|
+      format.html{redirect_to @channel}
+    end
+  end
+  
+  def move_down
+    @channel = Channel.find(params[:channel_id])
+    @app = @channel.applications.find(params[:id])
+    
+    @app.move_lower
+    respond_to do |formate|
+      format.html{redirect_to @channel}
+    end
+  end
 
   # DELETE /applications/1
   # DELETE /applications/1.json
