@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929200111) do
+ActiveRecord::Schema.define(:version => 20111006190513) do
 
   create_table "applications", :force => true do |t|
     t.integer  "channel_id"
@@ -30,8 +30,6 @@ ActiveRecord::Schema.define(:version => 20110929200111) do
   create_table "deliveries", :force => true do |t|
     t.integer  "version_id"
     t.string   "state"
-    t.boolean  "need_label"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "application_id"
@@ -73,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20110929200111) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "require_label"
+    t.text     "description"
   end
 
   create_table "work_items", :force => true do |t|
