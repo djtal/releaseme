@@ -1,12 +1,18 @@
-<%= simple_form_for(@version, :url => project_versions_path(@project.id, @version.id)) do |f| %>
+<%= simple_form_for([@project, @version]) do |f| %>
   <%= f.error_notification %>
 
   <div class="inputs">
     <%= f.input :version %>
     <%= f.association :channel %>
   </div>
+  
+  <div class="inputs">
+    <%= f.input :require_label %>
+    <%= f.input :description %>
+  </div>
 
   <div class="actions">
+    <%= link_to "Back to #{@project.name}", project_path(@project), :class => "btn" %> or 
     <%= f.button :submit, :class => "primary" %>
   </div>
 <% end %>

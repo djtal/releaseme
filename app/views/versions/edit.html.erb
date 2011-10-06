@@ -1,6 +1,6 @@
-<h1>Editing version</h1>
+<div class="page-header">
+  <h2>Editing version <%= @version.version %> of project<%= @project.name %></h2>
+</div>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @version %> |
-<%= link_to 'Back', versions_path %>
