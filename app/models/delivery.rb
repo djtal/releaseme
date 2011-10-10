@@ -10,8 +10,9 @@ class Delivery < ActiveRecord::Base
   
   
   state_machine :initial => :created do
+    
     event :deliver do
-      transition :created => :delivered
+      transition [:created, :require_deliver]  => :delivered, :if => :previous_delivery_validated?
     end
     
     event :validate do
@@ -21,5 +22,12 @@ class Delivery < ActiveRecord::Base
     event :cancel do
       transition :delivered => :canceld
     end
+  end
+  
+  
+  def previous_delivery_validated?
+    return true if self.application.first?
+    prev = self.class.for_app(self.application.higher_item).where(:version_id => self.version_id).first
+    return prev ? prev.validated? : false
   end
 end
