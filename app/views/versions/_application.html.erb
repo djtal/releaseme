@@ -11,7 +11,7 @@
       <% else %>
         <%= deliveries_state_for(@deliveries[application].first) %>
       <% end %>
-    <% else %>
+    <% elsif application.first? %>
       <%= simple_form_for(Delivery.new(:application => application),
                           :url => project_version_deliveries_path(@project.id, @version.id)) do |f| %>
         <%= f.input :application_id, :as => :hidden %>
