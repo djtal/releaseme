@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006190513) do
+ActiveRecord::Schema.define(:version => 20111012194137) do
 
   create_table "applications", :force => true do |t|
     t.integer  "channel_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20111006190513) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ask_deliver", :default => false
   end
 
   create_table "projects", :force => true do |t|
