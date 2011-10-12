@@ -60,7 +60,7 @@ class EnvironmentsController < ApplicationController
 
     respond_to do |format|
       if @environment.update_attributes(params[:environment])
-        format.html { redirect_to @environment, notice: 'Environment was successfully updated.' }
+        format.html { redirect_to environments_path, notice: 'Environment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
