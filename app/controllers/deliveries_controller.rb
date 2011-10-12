@@ -2,8 +2,10 @@ class DeliveriesController < ApplicationController
   # GET /deliveries
   # GET /deliveries.json
   def index
-    @deliveries = Delivery.all
-
+    @deliveries = Delivery.joins(:version, :environment).where(:environments => {:ask_deliver => true}).all
+    @grouped = @deliveries.group_by do |del|
+      del.environment
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @deliveries }

@@ -1,21 +1,26 @@
-<h1>Listing deliveries</h1>
+<div class="page-header">
+  <h2>Listing deliveries</h2>
+</div>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @deliveries.each do |delivery| %>
-  <tr>
-    <td><%= link_to 'Show', delivery %></td>
-    <td><%= link_to 'Edit', edit_delivery_path(delivery) %></td>
-    <td><%= link_to 'Destroy', delivery, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+<% @grouped.each do |environment, deliveries| %>
+  <h3><%= environment.name %></h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Version</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% deliveries.each do |delivery| %>
+        <tr>
+          <td><%= delivery.version.project.name %></td>
+          <td><%= delivery.version.version %></td>
+          <td><%= delivery.state %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Delivery', new_delivery_path %>
