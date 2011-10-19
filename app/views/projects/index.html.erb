@@ -8,17 +8,15 @@
       <th>Name</th>
       <th>Latest action</th>
       <th>Avancement</th>
-      <th>Deliveries</th>
       <th>Administration</th>
     </tr>
   </thead>
   <tbody>  
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.name, project_path(project) %></td>
+        <td><%= link_to "#{project.name} - #{project.short_description}", project_path(project) %> </td>
         <td></td>
         <td></td>
-        <td>#<%= project.deliveries_count %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %>&nbsp;|&nbsp;
         <%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
       </tr>

@@ -2,7 +2,8 @@ class DeliveriesController < ApplicationController
   # GET /deliveries
   # GET /deliveries.json
   def index
-    @deliveries = Delivery.joins(:version, :environment).where(:environments => {:ask_deliver => true}).all
+    @deliveries = Delivery.joins(:version, :environment).where(:environments => {:ask_deliver => true},
+                                  :deliveries => {:state => :asked}).all
     @grouped = @deliveries.group_by do |del|
       del.environment
     end

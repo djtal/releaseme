@@ -10,7 +10,15 @@
       </ul>
     </div>
   <% end %>
-  <%= f.input :name %>
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :short_description %>
+  </div>
+  
+  <div class="inputs">
+    <%= f.input :description %>
+  </div>
+  
 
   <div class="actions">
     <%= link_to "Cancel", projects_path, :class => "btn" %> or 
